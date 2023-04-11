@@ -1,10 +1,10 @@
-#include<iostream>
+#include<iostream>        // to initalize header file and to insert data into a stream (output) or extract data from a stream (input) in c++
 #include<math.h>
-using namespace std;
+using namespace std;    //  It is the declarative part where the scope of identifiers like functions, the name of types, classes, variables, etc., are declared.
 
-class RBTNode;
+class RBTNode;            // declaration of the class RBTNode, which is used later in the code.
 
-class HeapNode {
+class HeapNode {           //initialization of HeapNode with default values
 public :
     RBTNode *rbtNode;
     int index, rideNumber, rideCost, tripDuration;
@@ -16,7 +16,7 @@ public :
         rbtNode = nullptr;
     }
 
-    HeapNode(RBTNode *rbtNode, int rideNumber, int rideCost, int tripDuration) {
+    HeapNode(RBTNode *rbtNode, int rideNumber, int rideCost, int tripDuration) {             //assigning values to the variables using keyword  this
         this -> index = -1;
         this -> rbtNode = rbtNode;
         this -> rideNumber = rideNumber;
@@ -24,25 +24,23 @@ public :
         this -> tripDuration = tripDuration;
     }
 
-    void printHeapNode() {
+    void printHeapNode() {                            // printing output of index , rideNumber
         cout << "(" << this -> index << ", " <<
         this -> rideNumber << ", " << 
         this -> rideCost << ", " << 
         this -> tripDuration << ")";
     }
 
-    void printHeapNode(string &output) {
-        output += "(" + to_string(this -> rideNumber) + "," + 
-        to_string(this -> rideCost) + "," + 
-        to_string(this -> tripDuration) + ")\n";
+    void printHeapNode(string &output) {                           // for printing output in of rideNumber , rideCost , tripDuration           
+       output += "(" + to_string(this -> rideNumber) + "," + to_string(this -> rideCost) + "," +  to_string(this -> tripDuration) + ")\n";
     }
 };
 
-class Heap {
+class Heap {                 // defining heap class
     int back;
-    HeapNode* heap[2000];
+    HeapNode* heap[2000];    // defining array of fixed size 2000 as constraint mentioned in project
 public:
-    Heap() {
+    Heap() {          // it has a default constructor that initializes the "back" data member to 0
         back = 0;
     }
 
