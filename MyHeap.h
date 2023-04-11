@@ -4,30 +4,28 @@ using namespace std;    //  It is the declarative part where the scope of identi
 class RBTNode;            // declaration of the class RBTNode, which is used later in the code.
 class HeapNode {           //initialization of HeapNode with default values
 public :
-    RBTNode *rbtNode;
-    int index, rideNumber, rideCost, tripDuration;
-    HeapNode() {
-        index = -1;
-        rideNumber = 0;
-        rideCost = 0;
-        tripDuration = 0;
-        rbtNode = nullptr;
+RBTNode *rbtNode;
+int index, rideNumber, rideCost, tripDuration;
+HeapNode() {
+index = -1;
+rideNumber = 0;
+rideCost = 0;
+tripDuration = 0;
+rbtNode = nullptr;
     }
-
-    HeapNode(RBTNode *rbtNode, int rideNumber, int rideCost, int tripDuration) {             //assigning values to the variables using keyword  this
-        this -> index = -1;
-        this -> rbtNode = rbtNode;
-        this -> rideNumber = rideNumber;
-        this -> rideCost = rideCost;
+HeapNode(RBTNode *rbtNode, int rideNumber, int rideCost, int tripDuration) {             //assigning values to the variables using keyword  this
+this -> index = -1;
+this -> rbtNode = rbtNode;
+this -> rideNumber = rideNumber;
+this -> rideCost = rideCost;
         this -> tripDuration = tripDuration;
     }
-
-    void printHeapNode() {                            // printing output of index , rideNumber
-        cout << "(" << this -> index << ", " << this -> rideNumber << ", " << this -> rideCost << ", " << this -> tripDuration << ")";
+    
+void printHeapNode() {                            // printing output of index , rideNumber
+cout << "(" << this -> index << ", " << this -> rideNumber << ", " << this -> rideCost << ", " << this -> tripDuration << ")";
     }
-
-    void printHeapNode(string &output) {                           // for printing output in of rideNumber , rideCost , tripDuration           
-       output += "(" + to_string(this -> rideNumber) + "," + to_string(this -> rideCost) + "," +  to_string(this -> tripDuration) + ")\n";
+void printHeapNode(string &output) {                           // for printing output in of rideNumber , rideCost , tripDuration           
+output += "(" + to_string(this -> rideNumber) + "," + to_string(this -> rideCost) + "," +  to_string(this -> tripDuration) + ")\n";
     }
 };
 
