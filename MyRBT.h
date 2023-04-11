@@ -1,13 +1,11 @@
-#include "MyHeap.h"
-#include <queue>
-
-#define RED 0
+#include "MyHeap.h"    // including the file MyHeap.h that is included in this file
+#include <queue>       // initializing queue header
+#define RED 0         // Initalizing red black tree variables and giving them initial values
 #define BLACK 1
-
 #define L 0
 #define R 1
 
-class RBTNode {
+class RBTNode {                   //defining class RBTNode which will give initialize the default variables and will initalize them for this class with keyword "this"
 public :
     RBTNode *leftChild, *rightChild, *parent;
     HeapNode *heapNode;
@@ -25,14 +23,12 @@ public :
         this -> rideCost = 0;
         this -> tripDuration = 0;
     }
-
-    // Initializes non-external RBT nodes
-    RBTNode(RBTNode *leftChild, RBTNode *rightChild, RBTNode *parent, HeapNode* heapNode,
-    bool color, int rideNumber, int rideCost, int tripDuration) {
-        this -> leftChild = leftChild != nullptr ?
-            leftChild : new RBTNode();
-        this -> rightChild = rightChild != nullptr ?
-            rightChild : new RBTNode();
+    //This function initializes the  non-external RBT nodes
+    RBTNode(RBTNode *leftChild, RBTNode *rightChild, RBTNode *parent, HeapNode* heapNode,bool color, int rideNumber, int rideCost, int tripDuration) {
+        this -> leftChild = leftChild != nullptr ?        // terneray operator is used to assign values to leftChild and rightChild
+        leftChild : new RBTNode();
+        this -> rightChild = rightChild != nullptr ?       
+        rightChild : new RBTNode();
         this -> parent = parent;
         this -> heapNode = heapNode;
         this -> color = color;
@@ -41,7 +37,7 @@ public :
         this -> tripDuration = tripDuration;
     }
 
-    // Initializes non-external RBT nodes from an existing node
+    // This function initializes the non-external RBT nodes from an existing node
     RBTNode(RBTNode *node) {
         this -> leftChild = node -> leftChild != nullptr ?
             node -> leftChild : new RBTNode();
