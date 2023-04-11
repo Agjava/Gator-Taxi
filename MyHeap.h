@@ -1,9 +1,7 @@
 #include<iostream>        // to initalize header file and to insert data into a stream (output) or extract data from a stream (input) in c++
 #include<math.h>
 using namespace std;    //  It is the declarative part where the scope of identifiers like functions, the name of types, classes, variables, etc., are declared.
-
 class RBTNode;            // declaration of the class RBTNode, which is used later in the code.
-
 class HeapNode {           //initialization of HeapNode with default values
 public :
     RBTNode *rbtNode;
@@ -25,10 +23,7 @@ public :
     }
 
     void printHeapNode() {                            // printing output of index , rideNumber
-        cout << "(" << this -> index << ", " <<
-        this -> rideNumber << ", " << 
-        this -> rideCost << ", " << 
-        this -> tripDuration << ")";
+        cout << "(" << this -> index << ", " << this -> rideNumber << ", " << this -> rideCost << ", " << this -> tripDuration << ")";
     }
 
     void printHeapNode(string &output) {                           // for printing output in of rideNumber , rideCost , tripDuration           
@@ -37,59 +32,58 @@ public :
 };
 
 class Heap {                 // defining heap class
-    int back;
-    HeapNode* heap[2000];    // defining array of fixed size 2000 as constraint mentioned in project
+int back;
+HeapNode* heap[2000];    // defining array of fixed size 2000 as constraint mentioned in project
 public:
     Heap() {          // it has a default constructor that initializes the "back" data member to 0
-        back = 0;
+    back = 0;
+    }
+    
+int getSize() {          //back returns the size
+return back;
     }
 
-    int getSize() {
-        return back;
-    }
-
-    void push(HeapNode *heapNode) {
+    void push(HeapNode *heapNode) {        // for operation push
         heap[back] = heapNode;
         heap[back] -> index = back;
         heapifyUp(back);
         back++;
     }
 
-    void getTopNode () {
+    void getTopNode () {                  // to the top most element in node
         heap[0] -> printHeapNode();
     }
     
-    HeapNode* top () {
+    HeapNode* top () {              // this function returns top
         return heap[0];
     }
-
-    HeapNode* pop() {
+ 
+    HeapNode* pop() {             // to delete an element in headnode
         back--;
         HeapNode *deletedNode = heap[0];
-
         heap[0] = heap[back];
         heap[0] -> index = 0;
         heapifyDown(0);
         return deletedNode;
     }
 
-    void heapifyUp(int childIndex) {
+    void heapifyUp(int childIndex) {               //function is used to maintain the heap property of a binary heap data structure and uses childIndex
         if(childIndex == 0) return ;
-        int parent = childIndex % 2 ? (childIndex - 1)/2 : (childIndex - 1)/2;
-
+        int parent = childIndex % 2 ? (childIndex - 1)/2 : (childIndex - 1)/2;    //this is done to calculate the parent node in heap
         int prc = heap[parent] -> rideCost, crc = heap[childIndex] -> rideCost;
         int ptd = heap[parent] -> tripDuration, ctd = heap[childIndex] -> tripDuration;
         
         if(prc < crc) return;
-
-        if(prc > crc) {
+        
+        else if(prc > crc) {
+         swap(heap[parent] -> index, heap[childIndex] -> index);
+         swap(heap[parent], heap[childIndex]);
+        }
+        else if(ptd > ctd) {
             swap(heap[parent] -> index, heap[childIndex] -> index);
             swap(heap[parent], heap[childIndex]);
-        } else if(ptd > ctd) {
-            swap(heap[parent] -> index, heap[childIndex] -> index);
-            swap(heap[parent], heap[childIndex]);
-        } else return ;
-
+        } 
+        else return ;
         heapifyUp(parent);
     }
 
@@ -103,10 +97,11 @@ public:
             lctd = heap[leftChild] -> tripDuration;
         int childToSwap = rightChild;
 
-        // If only lc exists
+        // If only leftchild exists
         if(rightChild == back) {
             if(prc > lcrc || ptd > lctd) childToSwap = leftChild;
-        } else {
+        } 
+        else {
             int rcrc = heap[rightChild] -> rideCost, 
                 rctd = heap[rightChild] -> tripDuration;
 
@@ -133,19 +128,15 @@ public:
             heapifyDown(heapNode -> index);
         }
     }
-
-    void remove(HeapNode* heapNode) {
+     void remove(HeapNode* heapNode) {
         int index = heapNode -> index;
-
         back--;
         heap[index] = heap[back];
         heap[index] -> index = index;
         heapifyDown(index);
     }
-
-    void printHeap() {
+       void printHeap() {
         int level = 0, limit = 0;
-
         for(int i = 0; i < back; i++) {
             heap[i] -> printHeapNode();
             cout << ", ";
