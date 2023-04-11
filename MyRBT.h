@@ -50,7 +50,7 @@ public :
         this -> rideCost = node -> rideCost;
         this -> tripDuration = node -> tripDuration;
     }
-
+// this function as the name suggest copies heapnode except data
     void copyHeapNodeExceptData(RBTNode *node) {
         this -> leftChild = node -> leftChild;
         this -> rightChild = node -> rightChild;
@@ -60,42 +60,42 @@ public :
     }
 };
 
-class RBT {
+class RBT {          //defining class RBT
 public:
     RBTNode *root;
-    int treeSize;
+    int treesize;
 
     RBT() {
         root = nullptr;
-        treeSize = 0;
+        treesize = 0;
     }
 
     RBT(RBTNode *rbtNode) {
         root = rbtNode;
-        treeSize = 1;
+        treesize = 1;
     }
 
-    int getTreeSize(RBTNode *root) {
+    int getTreesize(RBTNode *root) {      //it returns the size of tree
         if(!isExternalNode(root)) 
-            return getTreeSize(root -> leftChild) + getTreeSize(root -> rightChild) + 1;
+            return getTreesize(root -> leftChild) + getTreesize(root -> rightChild) + 1;
         return 0;
     }
 
-    bool isExternalNode(RBTNode* node) {
+    bool isExternalNode(RBTNode* node) {                // it takes a pointer to an RBTNode object as an argument and returns a boolean value. The function checks if the given node is an external node by checking if its rideNumber, tripDuration, and rideCost member variables are all equal to 0. If all three conditions are true, the function returns true, indicating that the node is an external node. Otherwise, it returns false
         return node -> rideNumber == 0 && node -> tripDuration == 0 && node -> rideCost == 0;
     }
 
-    RBTNode* findNode(int key, RBTNode* node) {
-        if(!node || isExternalNode(node)) return nullptr;
+    RBTNode* Nodefind(int key, RBTNode* node) {           //defines the function Nodefind that takes an integer key and a pointer to an RBTNode object node as arguments and returns a pointer to an RBTNode object.
+        if(!node || isExternalNode(node)) return nullptr;   // checks if the given node is null or an external node. If either condition is true, the function returns null immediately.
 
-        int currentRideNumber = node -> rideNumber;
-        if(key == currentRideNumber) return node;
+        int RideNumbercurrent = node -> rideNumber;
+        if(key == RideNumbercurrent) return node;      //checks if the given key is equal to the ride number of the current node. If so, it returns the current node.
 
-        if(key > currentRideNumber) return findNode(key, node -> rightChild);
-        return findNode(key, node -> leftChild);
+        if(key > RideNumbercurrent) return Nodefind(key, node -> rightChild);      // checks if the given key is greater than the ride number of the current node. If so, it recursively calls itself with the right child of the current node as the new root of the subtree to search in.
+        return Nodefind(key, node -> leftChild);
     }
 
-    RBTNode* findParent(int key, RBTNode* node) {
+    RBTNode* findParent(int key, RBTNode* node) { 
         if(!node) return node;
         if(key > (node -> rideNumber)) {
             if(isExternalNode(node -> rightChild)) return node;
@@ -109,7 +109,7 @@ public:
 
     void insert(RBTNode *p) {
         int rn = p -> rideNumber;
-        treeSize++;
+        treesize++;
 
         RBTNode *pp = findParent(rn, root);
 
@@ -134,7 +134,7 @@ public:
     }
 
     string range(int r1, int r2) {
-        RBTNode *n1 = findNode(r1, root), *n2 = findNode(r2, root);
+        RBTNode *n1 = Nodefind(r1, root), *n2 = Nodefind(r2, root);
         RBTNode *ancestor = findCommonAncestor(r1, r2, root);
 
         string output;
@@ -167,7 +167,7 @@ public:
     }
 
     RBTNode* deleteNode(int rideNumber) {
-        RBTNode *p = findNode(rideNumber, root);
+        RBTNode *p = Nodefind(rideNumber, root);
         if(!p) return p;
 
         RBTNode *pp = p -> parent, *lc = p -> leftChild, *rc = p -> rightChild, *y;
@@ -224,7 +224,7 @@ public:
         if(pColor == BLACK) {
             adjustRBTAfterDelete(y, pp);
         }
-        treeSize--;
+        treesize--;
         return p;
     }
 
