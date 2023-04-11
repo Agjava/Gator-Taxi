@@ -1,26 +1,24 @@
-#include <fstream>
+#include <fstream>        //initializing filestream and vector 
 #include<vector>
-
-#include "MyRBT.h"
+#include "MyRBT.h"        //including files MyRBT.h and stringUtils.h 
 #include "stringUtils.h"
 
-void print(RBT *rbt, Heap *heap, int *args, string &output) {
-    cout << "print: " << args[0] << endl;
-    output += rbt -> range(args[0], args[0]);
+void print(RBT *rbt, Heap *heap, int *args, string &output) {       //function to print output 
+cout << "print: " << args[0] << endl;
+output += rbt -> range(args[0], args[0]);
 }
 
-void printRange(RBT *rbt, Heap *heap, int *args, string &output) {
+void printRange(RBT *rbt, Heap *heap, int *args, string &output) {      //function to print range of output
     cout << "printRange: " << args[0] << " " << args[1] << endl;
     output += rbt -> range(args[0], args[1]);
 }
 
-void insertRide(RBT *rbt, Heap *heap, int* args, string &output) {
+void insertRide(RBT *rbt, Heap *heap, int* args, string &output) {             //this function is used to insert the ride using node RBTNode and HeapNode
     cout << "insert: " << args[0] << " " << args[1] << " " << args[2] << endl;
     RBTNode* rnode = new RBTNode(nullptr, nullptr, nullptr, nullptr, RED, args[0], args[1], args[2]);
     HeapNode* hnode = new HeapNode(nullptr, args[0], args[1], args[2]);
-
-    rnode -> heapNode = hnode;
-    hnode -> rbtNode = rnode;
+rnode -> heapNode = hnode;
+   hnode -> rbtNode = rnode;
 
     if(rbt -> findNode(rnode -> rideNumber, rbt -> root)) {
         output += "Duplicate RideNumber\n";
