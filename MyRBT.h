@@ -520,8 +520,8 @@ public:
         pp -> parent = ggp;   
     }
 
-    void RRRotation(RBTNode* gp) {
-        RBTNode *ggp = gp -> parent, *pp = gp -> rightChild, *p = pp -> rightChild;
+    void RRRotation(RBTNode* gp) {     //same as above but position of rightchild and leftchild is interchanged
+        RBTNode *ggp = gp -> parent, *pp = gp -> rightChild, *p = pp -> rightChild;  
         RBTNode *c = pp -> leftChild, *b = p -> leftChild;
         
         pp -> leftChild = gp;
@@ -541,12 +541,12 @@ public:
         pp -> parent = ggp;
     }
 
-    void LRRotation(RBTNode* pp, RBTNode *gp) {
+    void LRRotation(RBTNode* pp, RBTNode *gp) {   //LR rotation
         RRRotation(pp);
         LLRotation(gp);
     }
 
-    void RLRotation(RBTNode* pp, RBTNode *gp) {
+    void RLRotation(RBTNode* pp, RBTNode *gp) {   //RL rotation
         LLRotation(pp);
         RRRotation(gp);
     }
