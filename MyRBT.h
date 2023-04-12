@@ -63,11 +63,11 @@ public :
 class RBT {          //defining class RBT
 public:
     RBTNode *root;
-    int treesize;
+    int treesize;   //initalizing treesize interger by defining here
 
     RBT() {
         root = nullptr;
-        treesize = 0;
+        treesize = 0;      //initalized as 0
     }
 
     RBT(RBTNode *rbtNode) {
@@ -95,50 +95,50 @@ public:
         return Nodefind(key, node -> leftChild);
     }
 
-    RBTNode* findParent(int key, RBTNode* node) { 
-        if(!node) return node;
-        if(key > (node -> rideNumber)) {
-            if(isExternalNode(node -> rightChild)) return node;
-            node = node -> rightChild;
+    RBTNode* findParent(int key, RBTNode* node) {  //This  defines a recursive function findParent that takes in an integer key and a pointer to an RBTNode node as arguments. The function returns a pointer to an RBTNode.
+        if(!node) return node;       
+        if(key > (node -> rideNumber)) {           // If the node pointer is not null, the function checks if the key is greater than the rideNumber data member of the node
+            if(isExternalNode(node -> rightChild)) return node;   //If it is, the function checks if the right child of the node is an external node by calling the isExternalNode function. If the right child is an external node, the function returns the current node.
+            node = node -> rightChild;       // If the right child is not an external node, the node pointer is updated to point to its right child.
         } else {
-            if(isExternalNode(node -> leftChild)) return node;
+            if(isExternalNode(node -> leftChild)) return node;  //If the key is not greater than the rideNumber data member of the node, the function performs similar operations on the left child of the node.
             node = node -> leftChild;
         }
-        return findParent(key, node);
+        return findParent(key, node);  //After updating the node pointer, if necessary, the function calls itself recursively with the updated node pointer and returns its result.
     }
 
-    void insert(RBTNode *p) {
+    void insert(RBTNode *p) {  // defines a function insert that takes a pointer to an RBTNode p as an argument and does not return anything. The function inserts the node p into a Red-Black Tree (RBT) data structure.
         int a = p -> rideNumber;
         treesize++;
 
         RBTNode *pp = findParent(a, root);
 
-        if(pp == nullptr) {
+        if(pp == nullptr) {  //If pp is a null pointer, this means that the tree is empty and p is the first node being inserted. In this case, the function sets the root of the tree to p, sets the color of p to BLACK, and returns.
             root = p;
             p -> color = BLACK;
             return;
         } 
 
-        p -> parent = pp;
+        p -> parent = pp;   //If pp is not a null pointer, this means that there is at least one node in the tree. The function sets the parent of p to pp. If the value of a is less than the value of the rideNumber data member of pp, then p is set as the left child of pp. Otherwise, it is set as its right child.
         if(a < pp -> rideNumber) pp -> leftChild = p;
         else pp -> rightChild = p;
 
-        adjustRBT(p);
+        adjustRBT(p); //the function calls another function named adjustRBT with argument p. This function adjusts the tree to maintain its Red-Black Tree properties after inserting a new node.
     }
 
-    RBTNode *findCommonAncestor(int r1, int r2, RBTNode *root) {
-        if(isExternalNode(root)) return root;
-        if(root -> rideNumber < r1) return findCommonAncestor(r1, r2, root -> rightChild);
-        if(root -> rideNumber > r2) return findCommonAncestor(r1, r2, root -> leftChild);
+    RBTNode *findCommonAncestor(int r1, int r2, RBTNode *root) {  //defines a recursive function findCommonAncestor that takes in two integers r1 and r2, and a pointer to an RBTNode root as arguments. The function returns a pointer to an RBTNode.
+        if(isExternalNode(root)) return root; //The first line of the function checks if the root node is an external node by calling the isExternalNode function. If it is, the function returns the root node.
+        if(root -> rideNumber < r1) return findCommonAncestor(r1, r2, root -> rightChild);  //If the root node is not an external node, the function checks if the value of its rideNumber data member is less than the value of r1. If it is, the function calls itself recursively with arguments r1, r2, and the right child of the root node.
+        if(root -> rideNumber > r2) return findCommonAncestor(r1, r2, root -> leftChild); // If the value of the rideNumber data member of the root node is not less than the value of r1, the function checks if it is greater than the value of r2. If it is, the function calls itself recursively with arguments r1, r2, and the left child of the root node.
         return root;
     }
 
-    string range(int r1, int r2) {
+    string range(int r1, int r2) {     // defines a function range that takes in two integers r1 and r2 as arguments and returns a string. 
         RBTNode *n1 = Nodefind(r1, root), *n2 = Nodefind(r2, root);
-        RBTNode *ancestor = findCommonAncestor(r1, r2, root);
+        RBTNode *ancestor = findCommonAncestor(r1, r2, root);   // calls the findCommonAncestor function with arguments r1, r2, and root. The result of this call is stored in a pointer to an RBTNode ancestor
 
         string output;
-        if(!isExternalNode(ancestor))
+        if(!isExternalNode(ancestor))   //The function then declares a string variable output. If the ancestor node is not an external node, as determined by calling the isExternalNode function, the function calls another function named printInorder with arguments r1, r2, output, and ancestor. 
             printInorder(r1, r2, output, ancestor);
         else output += "(" + to_string(ancestor -> rideNumber) + "," + to_string(ancestor -> rideCost) + ","
             + to_string(ancestor -> tripDuration) + ")," ;
@@ -146,50 +146,49 @@ public:
         return output.substr(0, output.length() - 1) + "\n";
     }
 
-    void printInorder(int r1, int r2, string &output, RBTNode* node) {
-        int b = node -> rideNumber;
-        if(b < r1 || b > r2 || isExternalNode(node)) return;
+    void printInorder(int r1, int r2, string &output, RBTNode* node) {  //defines a recursive function printInorder that takes in two integers r1 and r2, a reference to a string output, and a pointer to an RBTNode node as arguments. The function does not return anything.
+        int b = node -> rideNumber;     
+        if(b < r1 || b > r2 || isExternalNode(node)) return; //function retrieves the value of the rideNumber data member of the node and stores it in an integer variable b. The next line checks if the value of b is less than r1, greater than r2, or if the node is an external node by calling the isExternalNode function. If any of these conditions are met, the function returns immediately.
 
-        printInorder(r1, r2, output, node -> leftChild);
-        output += "(" + to_string(node -> rideNumber) + "," + to_string(node -> rideCost) + "," + to_string(node -> tripDuration) + "),";
+        printInorder(r1, r2, output, node -> leftChild);      //If none of these conditions are met, the function calls itself recursively with arguments r1, r2, output, and the left child of the node. This performs an in-order traversal of the left subtree of the node
+        output += "(" + to_string(node -> rideNumber) + "," + to_string(node -> rideCost) + "," + to_string(node -> tripDuration) + "),";  //After traversing the left subtree, the function appends a string representation of the values of the current node to the output string
         printInorder(r1, r2, output, node -> rightChild);
     }
 
-    int getChildType(RBTNode* pp, RBTNode* p) {
+    int getChildType(RBTNode* pp, RBTNode* p) {   //get child type
         if(pp -> rightChild == p) return R;
         return L;
     }
 
-    RBTNode* getMaxNode(RBTNode *p, RBTNode *currMax) {
+    RBTNode* getMaxNode(RBTNode *p, RBTNode *currMax) {    //get max node
         if(isExternalNode(p)) return currMax;
         else return getMaxNode(p -> rightChild, p);
     }
 
-    RBTNode* deleteNode(int rideNumber) {
+    RBTNode* deleteNode(int rideNumber) {       // defines a function deleteNode that takes in an integer rideNumber as an argument and returns a pointer to an RBTNode. The function  delete a node with the specified rideNumber from a Red-Black Tree (RBT) data structure.
         RBTNode *p = Nodefind(rideNumber, root);
         if(!p) return p;
-
+//If the p pointer is not null, this means that a node with the specified rideNumber was found in the tree. The function then declares several pointers to RBTNodes: pp, which points to the parent of p; lc, which points to the left child of p; and rc, which points to the right child of p. It also declares a pointer to an RBTNode y, but its value is not initialized at this point.
         RBTNode *pp = p -> parent, *lc = p -> leftChild, *rc = p -> rightChild, *y;
         int pColor = p -> color;
-        int noOfChildren = isExternalNode(lc) && isExternalNode(rc) ? 0 : 
-                            !isExternalNode(lc) && !isExternalNode(rc) ? 2 : 1;
+        int noOfChildren = isExternalNode(lc) && isExternalNode(rc) ? 0 :  !isExternalNode(lc) && !isExternalNode(rc) ? 2 : 1;     // //The function retrieves the value of the color data member of p and stores it in an integer variable pColor. It also calculates the number of non-external children of p by calling the isExternalNode function on its left and right children and stores the result in an integer variable noOfChildren.
 
-        if(noOfChildren == 0) {
+        if(noOfChildren == 0) {   // rest performs different operations depending on the value of noOfChildren. If it is 0, this means that both children of p are external nodes. 
             RBTNode *extNode = p -> rightChild;
-            if(p == root) {
-                root = nullptr;
+            if(p == root) {    //In this case, the function declares a pointer to an RBTNode extNode that points to the right child of p. If p is the root of the tree, the root is set to null and the function returns p
+                root = nullptr; //. Otherwise, if p is not the root, it checks if it is a left or right child of its parent by calling the getChildType function. 
                 return p;
             } else {
-                if(getChildType(pp, p) == R) pp -> rightChild = extNode;
+                if(getChildType(pp, p) == R) pp -> rightChild = extNode;   //If it is a right child, its parent’s right child is set to point to extNode. If it is a left child, its parent’s left child is set to point to extNode. The value of the pointer y is then set to point to extNode.
                 else pp -> leftChild = extNode;
                 y = extNode;
             }
-        } else if(noOfChildren == 1) {
+        } else if(noOfChildren == 1) {                 //If the value of noOfChildren is 1, this means that one of the children of p is an external node and one is not. In this case, the function performs several operations depending on whether or not p is the root of the tree and whether its left or right child is external.
             RBTNode *lc = p -> leftChild, *rc = p -> rightChild;
             if(p == root) {
                 root = isExternalNode(lc) ? rc : lc;
             } else {
-                if(!isExternalNode(rc) && getChildType(pp, p) == R) {
+                if(!isExternalNode(rc) && getChildType(pp, p) == R) {    
                     pp -> rightChild = rc;
                 } else if(!isExternalNode(lc) && getChildType(pp, p) == R) {
                     pp -> rightChild = lc;
@@ -197,7 +196,7 @@ public:
                 else pp -> leftChild = rc;
             }
             y = isExternalNode(lc) ? rc : lc;
-        } else {
+        } else {   //If the value of noOfChildren is 2, this means that both children of p are not external nodes. In this case, the function calls another function named getMaxNode with arguments <EUGPSCoordinates>leftChild, p. The result of this call is stored in a pointer to an RBTNode <EUGPSCoordinates>MaxNode. It then performs several operations depending on whether or not <EUGPSCoordinates>MaxNode is equal to <EUGPSCoordinates>leftChild`. 
             RBTNode *LSTMaxNode = getMaxNode(p -> leftChild, p);
             if(LSTMaxNode != p -> leftChild) {
                 LSTMaxNode -> parent -> rightChild = LSTMaxNode -> leftChild;
