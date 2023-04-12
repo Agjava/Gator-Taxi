@@ -441,19 +441,19 @@ public:
         b -> color = BLACK;
     }
 
-    void adjustRBT(RBTNode* p) {
-        if(!p || !p -> parent || !p -> parent -> parent) return;
+    void adjustRBT(RBTNode* p) {    //defines a function adjustRBT that takes in a pointer to an RBTNode p as an argument and does not return anything
+        if(!p || !p -> parent || !p -> parent -> parent) return;   //checks if p, its parent, or its grandparent are null. If any of these pointers are null, the function returns immediately.
 
-        RBTNode *pp = p -> parent, *gp = pp -> parent;
+        RBTNode *pp = p -> parent, *gp = pp -> parent;  //If none of these pointers are null, the function declares two pointers to RBTNodes pp and gp. pp points to the parent of p and gp points to the grandparent of p.
         if(pp -> color == BLACK) return;
 
-        int X, Y, r;
+        int X, Y, r;      //If the color of pp is not BLACK, the function declares three integer variables X, Y, and r. The value of X is set to either L or R, depending on whether pp is a left or right child of gp. The value of Y is set to either L or R, depending on whether p is a left or right child of pp. The value of r is set to the color of either the left or right child of gp, depending on the value of X.
 
         X = (gp -> leftChild == pp) ? L : R;
         Y = (pp -> leftChild == p) ? L : R;
         r = (X == L) ? gp -> rightChild -> color : gp -> leftChild -> color;
 
-        if(r == RED) {
+        if(r == RED) {           // The function then checks if the value of r is RED. If it is, it calls another function and perform rotations accordingly
             XYr(p);
             return;
         }
