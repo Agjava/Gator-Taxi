@@ -1,5 +1,6 @@
 #include<string>    //initializing 2 libraries string and iostream
 #include<iostream>
+#include <bits/stdc++.h>
 
 // Forward declaration of the operations
 void print(RBT *rbt, Heap *heap, int *args, string &output);       //declares a function named print that takes a pointer to an RBT object, a pointer to a Heap object, a pointer to an integer array args, and a reference to a string output as arguments and returns nothing (void).
