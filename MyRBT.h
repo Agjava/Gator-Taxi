@@ -551,24 +551,24 @@ public:
         RRRotation(gp);
     }
 
-    void printTree() {
+    void printTree() {     //declares a queue of RBTNode pointers called q.
         queue<RBTNode*> q;
-        q.push(root);
+        q.push(root);    // pushes the root of the tree onto the queue.
 
-        while(!q.empty()) {
-            int size = q.size();
-            while(size) {
-                RBTNode *node = q.front();
-                q.pop();
+        while(!q.empty()) {    //while loop that continues until the queue is empty.
+            int size = q.size();   //declares an integer variable called size and initializes it to the size of the queue.
+            while(size) {    //starts a nested while loop that continues until size is 0.
+                RBTNode *node = q.front();   //declares a pointer of type RBTNode called node and initializes it to the front element of the queue.
+                q.pop();   //pops the front element from the queue.
                 if(!node) {
                     cout << "Empty tree" << endl;
                     return;
                 }
-                char color = node -> color ? 'b' : 'r';
+                char color = node -> color ? 'b' : 'r';   //declares a character variable called color. It initializes it to 'b' if the color of node is true, and 'r' otherwise.
 
-                if(node -> rideNumber > 0) 
+                if(node -> rideNumber > 0)      // checks if the rideNumber of node is greater than 0. If it is, it prints color, a hyphen, and rideNumber to standard output followed by a tab character.
                     cout << color << "-" << node -> rideNumber << "\t";
-                if(node -> leftChild) q.push(node -> leftChild);
+                if(node -> leftChild) q.push(node -> leftChild);   // two lines check if node has left and right children respectively. If it does, it pushes them onto the queue.
                 if(node -> rightChild) q.push(node -> rightChild);
                 size--;
             }
