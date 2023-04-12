@@ -79,21 +79,21 @@ void updateTrip(RBT *rbt, Heap *heap, int* args, string &output) {      //This c
     } else cout << "No trip to update" << endl;
 }
 
-void parseInput(RBT *rbt, Heap *heap, int argc, char **argv) {
+void parseInput(RBT *rbt, Heap *heap, int argc, char **argv) {    //function reads input from a file specified by the second element of the argv array, processes each line of the file by calling the processOperation function with the appropriate arguments, and writes the output to a file named "output_file.txt
     fstream inputFile;
     inputFile.open(argv[1], ios::in);
     string output;
 
-    if(inputFile.is_open()){
+    if(inputFile.is_open()){          //calls the is_open member function of the inputFile object. If it returns true (i.e., if the file was successfully opened), this if block is executed.
         string fileLine;
-        while(getline(inputFile, fileLine)){ 
-            string operationPrefix = fileLine.substr(0, 3);
+        while(getline(inputFile, fileLine)){        //If the file was successfully opened, this while loop reads each line of the file into the variable fileLine using the global function getline.
+            string operationPrefix = fileLine.substr(0, 3);   //For each line of the file, this line extracts a substring of length 3 starting from position 0 (i.e., the first three characters) and assigns it to the variable operationPrefix.
             processOperation(rbt, heap, fileLine, operationPrefix, output);
         }
-        inputFile.close();
+        inputFile.close();        //process each line of the input file by calling the processOperation function with the appropriate arguments. After all lines have been processed, the input file is closed. Then, an output file named "output_file.txt" is opened for writing using an object of type ofstream. 
     }
 
-    ofstream MyFile("output_file.txt");
+    ofstream MyFile("output_file.txt");     //The contents of the output string are written to the output file using the << operator. Finally, the output file is closed.
     MyFile << output;
     MyFile.close();
 }
@@ -123,4 +123,3 @@ int main(int argc, char **argv) {
 }
 
 
-/
