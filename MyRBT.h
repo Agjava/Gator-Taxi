@@ -316,12 +316,12 @@ public:
         LRRotation(py -> leftChild, py);
     }
 
-    void RRCases(RBTNode *py) {
+    void RRCases(RBTNode *py) {   //defines a function RRCases that takes in a pointer to an RBTNode py as an argument and does not return anything. The function is a part of the process of adjusting a Red-Black Tree (RBT) data structure to maintain its properties after deleting a node.
         RBTNode *v = py -> leftChild, *w = v -> rightChild;
-        RBTNode *b = w -> leftChild, *c = w -> rightChild;
-        int n = c -> color == RED ? (b -> color == RED ? 2 : 1) : b -> color == RED ? 1 : 0;
+        RBTNode *b = w -> leftChild, *c = w -> rightChild;   //The function then declares two more pointers to RBTNodes b and c. b points to the left child of w and c points to the right child of w.
+        int n = c -> color == RED ? (b -> color == RED ? 2 : 1) : b -> color == RED ? 1 : 0;   //The function then calculates a value that depends on whether or not the colors of b and c are RED and stores it in an integer variable n.
 
-        if(n == 0) {
+        if(n == 0) {   //the function performs different operations depending on the value of n
             RR0(py, v, w);
         } else if(n == 1) {
             if(b -> color == RED) RR11(v, py, b);
@@ -331,7 +331,7 @@ public:
         }
     }
 
-    void RR0(RBTNode *py, RBTNode *v, RBTNode *b) {
+    void RR0(RBTNode *py, RBTNode *v, RBTNode *b) {   // part of red black tree process
         LLRotation(py);
         v -> color = BLACK;
         b -> color = RED;
@@ -354,21 +354,21 @@ public:
         x -> color = BLACK;
     }
 
-    void LB0(RBTNode *y, RBTNode *py) {
+    void LB0(RBTNode *y, RBTNode *py) {  //defines a function LB0 that takes in two pointers to RBTNodes y and py as arguments and does not return anything.
         if(y == root) {
             y -> color = BLACK;
             return;
         }
         RBTNode *v = py -> rightChild;
 
-        if(py -> color == BLACK) {
+        if(py -> color == BLACK) {  //The function then checks if the color of py is BLACK. If it is, it sets the color of v to RED. If it is not, it sets the color of py to BLACK and the color of v to RED. The function then returns.
             v -> color = RED;
         } else {
             py -> color = BLACK;
             v -> color = RED;
             return;
         }
-        adjustRBTAfterDelete(py, py -> parent);
+        adjustRBTAfterDelete(py, py -> parent);  //If the color of py was initially BLACK, the function calls another function named adjustRBTAfterDelete with arguments py and the parent of py. This function  adjusts the tree to maintain its Red-Black Tree properties after deleting a node.
     }
 
     void LB1Cases(RBTNode *y, RBTNode *py, RBTNode *b) {
