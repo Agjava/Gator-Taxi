@@ -39,9 +39,8 @@ void getNextRide(RBT *rbt, Heap *heap, string &output) {         //function that
         output += "No active ride requests\n";
         return;
     }
-    HeapNode* deletedHeapNode = heap -> pop();
-    deletedHeapNode -> printHeapNode(output);
-    // cout << rbt -> root -> rideNumber << endl;
+    HeapNode* deletedHeapNode = heap -> pop();                //removes the node with the minimum ride cost or trip duration from the heap by calling the pop function of the heap object. The removed node is then printed to the output string by calling its printHeapNode function. The corresponding node in the RBT is then deleted by calling the deleteNode function of the rbt object with the ride number of the removed heap node as an argument. Finally, the heap and RBT are printed to the standard output stream by calling their respective printHeap and printTree functions.
+    deletedHeapNode -> printHeapNode(output);                           
     rbt -> deleteNode(deletedHeapNode -> rbtNode -> rideNumber);
 
     cout << endl;
@@ -49,10 +48,10 @@ void getNextRide(RBT *rbt, Heap *heap, string &output) {         //function that
     rbt -> printTree();
 }
 
-void cancelRide(RBT *rbt, Heap *heap, int* args, string &output) {
+void cancelRide(RBT *rbt, Heap *heap, int* args, string &output) {   //function cancels a ride by removing the corresponding node from both the RBT and the heap. 
     cout << "cancelRide: " << args[0] << endl;
     RBTNode* deletedRBTNode = rbt -> deleteNode(args[0]);
-    heap -> remove(deletedRBTNode -> heapNode);
+    heap -> remove(deletedRBTNode -> heapNode);   //calls the remove function of the heap object with the value of the heapNode member variable of the deleted RBT node as an argument. The function removes the corresponding node from the heap.
 
     heap -> printHeap();
     rbt -> printTree();
