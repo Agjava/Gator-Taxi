@@ -98,17 +98,17 @@ void parseInput(RBT *rbt, Heap *heap, int argc, char **argv) {    //function rea
     MyFile.close();
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) {   //main function
     RBT *rbt = new RBT();
     Heap *heap = new Heap();
 
-    if(argc >= 2) {
+    if(argc >= 2) {          //The main function takes in command line arguments argc and argv. If the number of arguments (argc) is greater than or equal to 2, the function parseInput is called with the RBT, Heap, and command line arguments as parameters. If the number of arguments is less than 2, an error message is printed to the console stating that there are insufficient arguments and an input file should be provided.
         parseInput(rbt, heap, argc, argv);
         return 0;
     } else cout << "Insufficient arguments - Please provide input file" << endl;
     return 0;
-
-    RBTNode *rnode;
+//After the check for sufficient arguments, two pointers to RBTNode and HeapNode are declared but not initialized. Then several HeapNodes are created with different values and pushed onto the heap. The heap is then printed, a specific node is removed, and the heap is printed again.
+    RBTNode *rnode; 
     HeapNode *hnode;
     heap -> push(new HeapNode(nullptr, 10,11,12));
     heap -> push(new HeapNode(nullptr, 20,9,12));
