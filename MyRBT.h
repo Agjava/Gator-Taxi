@@ -500,21 +500,21 @@ public:
     }
 
     void LLRotation(RBTNode* gp) {
-        RBTNode *ggp = gp -> parent, *pp = gp -> leftChild, *p = pp -> leftChild;
-        RBTNode *c = pp -> rightChild;
+        RBTNode *ggp = gp -> parent, *pp = gp -> leftChild, *p = pp -> leftChild;    //declares three pointers of type RBTNode: ggp, pp, and p. It also initializes them to the parent of gp, the left child of gp, and the left child of pp, respectively.
+        RBTNode *c = pp -> rightChild;  //declares a pointer of type RBTNode called c and initializes it to the right child of pp
         
-        pp -> rightChild = gp;
-        gp -> leftChild = c;
+        pp -> rightChild = gp;  //sets the right child of pp to be gp.
+        gp -> leftChild = c;  //setting different values
 
         pp -> parent = ggp;
         gp -> parent = pp;
 
-        if(!ggp) {
+        if(!ggp) {    //checks if ggp is a null pointer. If it is, it sets the root to be equal to pp and returns from the function.
             root = pp;
             return;
         }
 
-        if(ggp -> rightChild == gp) ggp -> rightChild = pp;
+        if(ggp -> rightChild == gp) ggp -> rightChild = pp;    //block checks if the right child of ggp is equal to gp. If it is, it sets the right child of ggp to be equal to pp. Otherwise, it sets the left child of ggp to be equal to pp.
         else ggp -> leftChild = pp;    
 
         pp -> parent = ggp;   
