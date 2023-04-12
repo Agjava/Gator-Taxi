@@ -212,37 +212,37 @@ public:
         }
 
 
-        if(y == root || y -> color == RED) {
+        if(y == root || y -> color == RED) {  //checks if the pointer y, which was declared earlier in the function but not shown in this code snippet, is equal to the root of the tree or if its color is RED. If either of these conditions is true, the color of y is set to BLACK and the function returns p.
             y -> color = BLACK;
             return p;
         }
-        y -> parent = pp;
+        y -> parent = pp;   //If neither of these conditions is true, the parent of y is set to pp, where pp is another pointer that was declared earlier in the function 
         
-        if(pColor == BLACK) {
+        if(pColor == BLACK) {   //The function then checks if the value of pColor, which was also declared earlier in the function but not shown in this code snippet, is equal to BLACK. If it is, the function calls another function named adjustRBTAfterDelete with arguments y and pp. This function adjusts the tree to maintain its Red-Black Tree properties after deleting a node.
             adjustRBTAfterDelete(y, pp);
         }
-        treesize--;
+        treesize--; //The next line decrements the value of the treesize variable,  to keep track of the number of nodes in the tree. Finally, the function returns p.
         return p;
     }
 
-    void adjustRBTAfterDelete(RBTNode *y, RBTNode* py) {
-        if(y == root) {
+    void adjustRBTAfterDelete(RBTNode *y, RBTNode* py) {  //code defines a function adjustRBTAfterDelete that takes in two pointers to RBTNodes y and py as arguments and does not return anything. The function  adjust a Red-Black Tree (RBT) data structure to maintain its properties after deleting a node.
+        if(y == root) {   //checks if y is equal to the root of the tree. If it is, the color of y is set to BLACK and the function returns.
             y -> color = BLACK;
             return;
         }
 
-        RBTNode *v = (getChildType(py, y) == L) ? py -> rightChild : py -> leftChild;
-        if(isExternalNode(v)) {
+        RBTNode *v = (getChildType(py, y) == L) ? py -> rightChild : py -> leftChild;  //If y is not equal to the root of the tree, the function declares a pointer to an RBTNode v that points to either the left or right child of py, depending on whether y is a left or right child of py. This is determined by calling the getChildType function with arguments py and y
+        if(isExternalNode(v)) {  //The function then checks if v is an external node by calling the isExternalNode function. If it is, the function checks if y is not an external node. If it is not, its color is set to RED. The function then returns.
             if(!isExternalNode(y))
                 y -> color = RED;
             return;
         }
 
-        RBTNode *a = v -> leftChild, *b = v -> rightChild;
+        RBTNode *a = v -> leftChild, *b = v -> rightChild;         //If v is not an external node, the function declares two pointers to RBTNodes a and b that point to the left and right children of v, respectively. It also declares several integer variables: X, which stores the result of calling the getChildType function with arguments py and y; c, which stores the value of the color data member of v; and n, which stores a value that depends on whether or not the colors of a and b are RED.
         int X = getChildType(py, y), c = v -> color, 
         n = a -> color == RED ? (b -> color == RED ? 2 : 1) : b -> color == RED ? 1 : 0;
 
-        //cases
+        // these are some of the cases .  The function performs different operations depending on the values of these variables.
         if(X == R && c == BLACK && n == 0) {
             cout << "RB0 case" << endl;
             RB0(y, py);
