@@ -57,23 +57,23 @@ void cancelRide(RBT *rbt, Heap *heap, int* args, string &output) {   //function 
     rbt -> printTree();
 }
 
-void updateTrip(RBT *rbt, Heap *heap, int* args, string &output) {
-    int newTD = args[1];
-    cout<< "updateTrip: " << args[0] << " " << newTD << endl;
+void updateTrip(RBT *rbt, Heap *heap, int* args, string &output) {      //This code defines the updateTrip function that takes a pointer to an RBT object, a pointer to a Heap object, a pointer to an integer array args, and a reference to a string output as arguments and returns nothing (void). 
+    int newTD = args[1];                                               
+    cout<< "updateTrip: " << args[0] << " " << newTD << endl;          
     RBTNode* node = rbt -> findNode(args[0], rbt -> root);
     if(node) {
         int existingTD = node -> tripDuration;
-        if(newTD <= existingTD) {
+        if(newTD <= existingTD) {                               //The function updates the trip duration of a ride by finding the corresponding node in the RBT and updating its trip duration. If the new trip duration is less than or equal to the existing trip duration, the node is updated in place. 
             node -> tripDuration = newTD;
             heap -> update(node -> heapNode , node -> rideCost, newTD);
             heap -> printHeap();
             rbt -> printTree();
-        } else if(existingTD < newTD && newTD <= 2 * existingTD) {
+        } else if(existingTD < newTD && newTD <= 2 * existingTD) {     //If the new trip duration is greater than the existing trip duration but less than or equal to twice the existing trip duration, the ride is canceled and reinserted with an increased ride cost.
             cancelRide(rbt, heap, args, output);
             args[1] = node -> rideCost + 10;
             args[2] = newTD;
             insertRide(rbt, heap, args, output);
-        } else if(newTD > 2 * existingTD) {
+        } else if(newTD > 2 * existingTD) {               // If the new trip duration is greater than twice the existing trip duration, the ride is canceled.
             cancelRide(rbt, heap, args, output);
         }
     } else cout << "No trip to update" << endl;
