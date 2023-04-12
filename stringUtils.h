@@ -49,16 +49,16 @@ void processOperation(RBT *rbt, Heap *heap, string line, string operationPrefix,
             parseargs1(args, line);              //value of operationPrefix is equal to “Pri” but given string does not contain comma character then this line calls parseargs1 function with args array and given string as arguments
             print(rbt, heap, args, output);   
         }
-    } else if(operationPrefix == "Ins") {
+    } else if(operationPrefix == "Ins") {        //line checks if the value of operationPrefix is equal to "Ins"
         parseargs3(args, line);
         insertRide(rbt, heap, args, output);
-    } else if(operationPrefix == "Upd") {
+    } else if(operationPrefix == "Upd") {           // line checks if value of operationPrefix is equal to “Upd”
         parseargs2(args, line);
         updateTrip(rbt, heap, args, output);
-    } else if(operationPrefix == "Can") {
+    } else if(operationPrefix == "Can") {           //checks if value of operationPrefix is equal to “Can”
         parseargs1(args, line);
         cancelRide(rbt, heap, args, output);
     } else if(operationPrefix == "Get") {
-        getNextRide(rbt, heap, output);
+        getNextRide(rbt, heap, output);          //If value of operationPrefix is equal to “Get” then this line calls getNextRide function with rbt object pointer heap object pointer and output reference as arguments.
     }
 }
