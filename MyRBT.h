@@ -108,10 +108,10 @@ public:
     }
 
     void insert(RBTNode *p) {
-        int rn = p -> rideNumber;
+        int a = p -> rideNumber;
         treesize++;
 
-        RBTNode *pp = findParent(rn, root);
+        RBTNode *pp = findParent(a, root);
 
         if(pp == nullptr) {
             root = p;
@@ -120,7 +120,7 @@ public:
         } 
 
         p -> parent = pp;
-        if(rn < pp -> rideNumber) pp -> leftChild = p;
+        if(a < pp -> rideNumber) pp -> leftChild = p;
         else pp -> rightChild = p;
 
         adjustRBT(p);
@@ -147,12 +147,11 @@ public:
     }
 
     void printInorder(int r1, int r2, string &output, RBTNode* node) {
-        int rn = node -> rideNumber;
-        if(rn < r1 || rn > r2 || isExternalNode(node)) return;
+        int b = node -> rideNumber;
+        if(b < r1 || b > r2 || isExternalNode(node)) return;
 
         printInorder(r1, r2, output, node -> leftChild);
-        output += "(" + to_string(node -> rideNumber) + "," + to_string(node -> rideCost) + ","
-            + to_string(node -> tripDuration) + "),";
+        output += "(" + to_string(node -> rideNumber) + "," + to_string(node -> rideCost) + "," + to_string(node -> tripDuration) + "),";
         printInorder(r1, r2, output, node -> rightChild);
     }
 
@@ -213,7 +212,6 @@ public:
             if(p == root) root = LSTMaxNode;
         }
 
-        // cout << y -> rideNumber << " " << p -> rideNumber << " " << pp -> rideNumber << endl;
 
         if(y == root || y -> color == RED) {
             y -> color = BLACK;
