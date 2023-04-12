@@ -284,11 +284,11 @@ public:
         adjustRBTAfterDelete(py, py -> parent);  //If the color of py was initially BLACK, the function calls itself recursively with arguments py and the parent of py. This continues the process of adjusting the tree after deleting a node.
     } 
 
-    void RB1Cases(RBTNode *y, RBTNode *py, RBTNode *a) {
-        if(a == RED) {
+    void RB1Cases(RBTNode *y, RBTNode *py, RBTNode *a) {   //defines a function RB1Cases that takes in three pointers to RBTNodes y, py, and a as arguments and does not return anything. The function is part of the process of adjusting a Red-Black Tree (RBT) data structure to maintain its properties after deleting a node.
+        if(a == RED) {   //The function checks if the color of a is RED. If it is, the function calls another function named RB11 with arguments y and py. 
             cout << "RB11 case" << endl;
             RB11(y, py);
-        } else {
+        } else {   //If it is not, the function calls another function named RB12 with the same arguments. 
             cout << "RB12 case" << endl;
             RB12(y, py);
         }
