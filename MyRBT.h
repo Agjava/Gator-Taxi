@@ -266,23 +266,23 @@ public:
         }
     }
 
-    void RB0(RBTNode *y, RBTNode *py) {
-        if(y == root) {
+    void RB0(RBTNode *y, RBTNode *py) {  //defines a function RB0 that takes in two pointers to RBTNodes y and py as arguments and does not return anything. The function is a part of the process of adjusting a Red-Black Tree (RBT) data structure to maintain its properties after deleting a node.
+        if(y == root) {   //checks if y is equal to the root of the tree. If it is, the color of y is set to BLACK and the function returns.
             y -> color = BLACK;
             return;
         }
 
-        RBTNode *v = py -> leftChild;
+        RBTNode *v = py -> leftChild;  //If y is not equal to the root of the tree, the function declares a pointer to an RBTNode v that points to the left child of py.
 
-        if(py -> color == BLACK) {
+        if(py -> color == BLACK) {    //The function then checks if the color of py is BLACK. If it is, the color of v is set to RED. If it is not, the color of py is set to BLACK and the color of v is set to RED. The function then returns.
             v -> color = RED;
         } else {
             py -> color = BLACK;
             v -> color = RED;
             return;
         }
-        adjustRBTAfterDelete(py, py -> parent);
-    }
+        adjustRBTAfterDelete(py, py -> parent);  //If the color of py was initially BLACK, the function calls itself recursively with arguments py and the parent of py. This continues the process of adjusting the tree after deleting a node.
+    } 
 
     void RB1Cases(RBTNode *y, RBTNode *py, RBTNode *a) {
         if(a == RED) {
