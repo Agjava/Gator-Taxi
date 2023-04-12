@@ -371,7 +371,7 @@ public:
         adjustRBTAfterDelete(py, py -> parent);  //If the color of py was initially BLACK, the function calls another function named adjustRBTAfterDelete with arguments py and the parent of py. This function  adjusts the tree to maintain its Red-Black Tree properties after deleting a node.
     }
 
-    void LB1Cases(RBTNode *y, RBTNode *py, RBTNode *b) {
+    void LB1Cases(RBTNode *y, RBTNode *py, RBTNode *b) {  //function LB1Cases that takes in three pointers to RBTNodes y, py, and b as arguments and does not return anything. 
         if(b == RED) {
             cout << "LB11 case" << endl;
             LB11(y, py);
@@ -381,7 +381,7 @@ public:
         }
     }
 
-    void LB11(RBTNode *y, RBTNode *py) {
+    void LB11(RBTNode *y, RBTNode *py) {     // part of red black tree
         RBTNode *v = py -> rightChild, *b = v -> rightChild;
         b -> color = BLACK;
         v -> color = py -> color ;
@@ -389,21 +389,21 @@ public:
         RRRotation(py);
     }
 
-    void LB12(RBTNode *y, RBTNode *py) {
+    void LB12(RBTNode *y, RBTNode *py) {     // part of red black tree
         RBTNode *v = py -> rightChild, *a = v -> leftChild;
         a -> color = py -> color ;
         py -> color = BLACK;
         RLRotation(v, py);
     }
 
-    void LB2(RBTNode *y, RBTNode *py) {
+    void LB2(RBTNode *y, RBTNode *py) {      // part of red black tree
         RBTNode* a = py -> rightChild -> leftChild;
         a -> color = py -> color;
         py -> color = BLACK;
         LRRotation(py -> rightChild, py);
     }
 
-    void LRCases(RBTNode *py) {
+    void LRCases(RBTNode *py) {      
         RBTNode *v = py -> rightChild, *a = v -> leftChild;
         RBTNode *b = a -> leftChild, *c = a -> rightChild;
         int n = c -> color == RED ? (b -> color == RED ? 2 : 1) : b -> color == RED ? 1 : 0;
