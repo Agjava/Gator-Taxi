@@ -294,22 +294,22 @@ public:
         }
     }
 
-    void RB11(RBTNode *y, RBTNode *py) {
-        RBTNode *v = py -> leftChild, *a = v -> leftChild;
+    void RB11(RBTNode *y, RBTNode *py) {   //function declares two pointers to RBTNodes v and a. v points to the left child of py and a points to the left child of v.
+        RBTNode *v = py -> leftChild, *a = v -> leftChild;  //The function then sets the color of a to BLACK, the color of v to the color of py, and the color of py to BLACK.
         a -> color = BLACK;
         v -> color = py -> color ;
         py -> color = BLACK;
-        LLRotation(py);
+        LLRotation(py);   
     }
 
-    void RB12(RBTNode *y, RBTNode *py) {
+    void RB12(RBTNode *y, RBTNode *py) {        // part of red black tree adjustment
         RBTNode *v = py -> leftChild, *w = v -> rightChild;
         w -> color = py -> color ;
         py -> color = BLACK;
         LRRotation(v, py);
     }
 
-    void RB2(RBTNode *y, RBTNode *py) {
+    void RB2(RBTNode *y, RBTNode *py) {       // function declares a pointer to an RBTNode w that points to the right child of the left child of py.The function then sets the color of w to the color of py and the color of py to BLACK.Finally, the function calls another function named LRRotation with arguments <EUGPSCoordinates>leftChildandpy`
         RBTNode* w = py -> leftChild -> rightChild;
         w -> color = py -> color;
         py -> color = BLACK;
