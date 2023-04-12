@@ -20,19 +20,19 @@ void insertRide(RBT *rbt, Heap *heap, int* args, string &output) {             /
 rnode -> heapNode = hnode;
    hnode -> rbtNode = rnode;
 
-    if(rbt -> findNode(rnode -> rideNumber, rbt -> root)) {
+    if(rbt -> findNode(rnode -> rideNumber, rbt -> root)) {      //check if a node with the same ride number as the new node already exists in the RBT. If such a node is found, it appends the string "Duplicate RideNumber\n" to the output string and returns immediately from the function.
         output += "Duplicate RideNumber\n";
         return;
     }
 
-    rbt -> insert(rnode);
-    heap -> push(hnode);
+    rbt -> insert(rnode);   //insert
+    heap -> push(hnode);    //push operation
 
-    rbt -> printTree();
-    heap -> printHeap();
+    rbt -> printTree();   //print tree
+    heap -> printHeap();  //print heap
 }
 
-void getNextRide(RBT *rbt, Heap *heap, string &output) {
+void getNextRide(RBT *rbt, Heap *heap, string &output) {         //function that takes a pointer to an RBT object, a pointer to a Heap object, and a reference to a string output as arguments and returns nothing (void)
     cout << "getNextRide" << endl;
 
     if(heap -> getSize() == 0) {
@@ -111,66 +111,17 @@ int main(int argc, char **argv) {
 
     RBTNode *rnode;
     HeapNode *hnode;
-
-    // vector<int> input = {41,38,31,12,19,8};
-
-    // for(int val : input) {
-    //     rnode = new RBTNode(nullptr, nullptr, nullptr, nullptr, RED, val, 200, 10);
-    //     hnode = new HeapNode(nullptr, val, 200, 10);
-    //     rbt -> insert(rnode);
-    //     heap -> push(hnode);
-        // rnode -> heapNode = hnode;
-        // hnode -> rbtNode = rnode;
-
-    //     cout << "Inserted " << val << endl;
-    //         cout << "Tree size:" << rbt -> getTreeSize(rbt -> root) << endl;
-    //     rbt -> printTree();
-    // }
-
-    // vector<int> dels = {8,12,19,31,38,41};
-
-    // for(int val : dels) {
-    //     rbt -> deleteNode(val);
-    //     cout << "Deleted " << val << endl;
-    //     cout << "Tree size:" << rbt -> getTreeSize(rbt -> root) << endl;
-    //     rbt -> printTree();
-    // }
-
-    // cout << rbt -> range(9,100);
-
-
     heap -> push(new HeapNode(nullptr, 10,11,12));
     heap -> push(new HeapNode(nullptr, 20,9,12));
     heap -> push(new HeapNode(nullptr, 30,9,9));
-    // heap -> getTopNode();
-    // cout << heap -> getSize() << endl;
-
-
+    
     heap -> push(new HeapNode(nullptr, 20,8,12));
-    // heap -> pop();
-    // heap -> getTopNode();
     HeapNode *h = new HeapNode(nullptr, 30,9,8);
     heap -> push(h);
-    // cout << heap -> getSize() << endl;
-    heap -> printHeap();
-
-    heap -> remove(h);
+    heap -> printHeap();heap -> remove(h);
     heap -> printHeap();
 
 }
 
 
-/*
-    Heap tests
-    --------------------------------------------------
-    // heap -> push(new HeapNode(nullptr, 10,11,12));
-    // heap -> push(new HeapNode(nullptr, 20,9,12));
-    // heap -> push(new HeapNode(nullptr, 30,9,9));
-    // heap -> getTopNode();
-    // cout << heap -> getSize() << endl;
-
-    // heap -> pop();
-
-    // heap -> getTopNode();
-    // cout << heap -> getSize() << endl;
-*/
+/
