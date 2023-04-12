@@ -403,12 +403,12 @@ public:
         LRRotation(py -> rightChild, py);
     }
 
-    void LRCases(RBTNode *py) {      
-        RBTNode *v = py -> rightChild, *a = v -> leftChild;
-        RBTNode *b = a -> leftChild, *c = a -> rightChild;
-        int n = c -> color == RED ? (b -> color == RED ? 2 : 1) : b -> color == RED ? 1 : 0;
+    void LRCases(RBTNode *py) {         //function LRCases that takes in a pointer to an RBTNode py as an argument and does not return anything. 
+        RBTNode *v = py -> rightChild, *a = v -> leftChild;  //The function declares two pointers to RBTNodes v and a. v points to the right child of py and a points to the left child of v.
+        RBTNode *b = a -> leftChild, *c = a -> rightChild;   //The function then declares two more pointers to RBTNodes b and c. b points to the left child of a and c points to the right child of a.
+        int n = c -> color == RED ? (b -> color == RED ? 2 : 1) : b -> color == RED ? 1 : 0;  //The function then calculates a value that depends on whether or not the colors of b and c are RED and stores it in an integer variable n.
 
-        if(n == 0) {
+        if(n == 0) {  //The rest of the function performs different operations depending on the value of n
             LR0(py, v, a);
         } else if(n == 1) {
             if(c -> color == RED) LR11(v, py, c);
@@ -418,24 +418,24 @@ public:
         }
     }
 
-    void LR0(RBTNode *py, RBTNode *v, RBTNode *a) {
+    void LR0(RBTNode *py, RBTNode *v, RBTNode *a) {  // part of red black tree
         RRRotation(py);
         v -> color = BLACK;
         a -> color = RED;
     }
 
-    void LR11(RBTNode *v, RBTNode *py, RBTNode *c) {
+    void LR11(RBTNode *v, RBTNode *py, RBTNode *c) { // part of red black tree
         RLRotation(v, py);
         c -> color = BLACK;
     }
 
-    void LR12(RBTNode *py, RBTNode *v, RBTNode *w, RBTNode *b) {
+    void LR12(RBTNode *py, RBTNode *v, RBTNode *w, RBTNode *b) {  // part of red black tree
         LLRotation(w);
         RLRotation(v, py);
         b -> color = BLACK;
     }
 
-    void LR2(RBTNode *py, RBTNode *v, RBTNode *w, RBTNode *b) {
+    void LR2(RBTNode *py, RBTNode *v, RBTNode *w, RBTNode *b) {  // part of red black tree
         LLRotation(w);
         RLRotation(v, py);
         b -> color = BLACK;
