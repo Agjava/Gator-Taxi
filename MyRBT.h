@@ -458,7 +458,7 @@ public:
             return;
         }
 
-        if(X == L && Y == L) {
+        if(X == L && Y == L) {   // part of rotation process
             LLRotation(gp);
             pp -> color = BLACK;
             gp -> color = RED;  
@@ -478,21 +478,21 @@ public:
         
     }
 
-    void XYr(RBTNode* p) {
-        if(p == root) {
+    void XYr(RBTNode* p) {     //defines a function XYr that takes in a pointer to an RBTNode p as an argument and does not return anything.
+        if(p == root) {   //checks if p is equal to the root of the tree. If it is, the color of p is set to BLACK and the function returns.
             p -> color = BLACK;
             return;
         }
 
-        RBTNode *pp = p -> parent;
-        if(p -> color == BLACK || pp -> color == BLACK) return;
+        RBTNode *pp = p -> parent;   //If p is not equal to the root of the tree, the function declares a pointer to an RBTNode pp that points to the parent of p.
+        if(p -> color == BLACK || pp -> color == BLACK) return;   //The function checks if either the color of p or the color of pp is BLACK. If either of these conditions is true, the function returns immediately.
         
-        int X = (pp -> parent -> leftChild == pp) ? L : R;
+        int X = (pp -> parent -> leftChild == pp) ? L : R;  //If neither of these conditions is true, the function declares an integer variable X and sets its value to either L or R, depending on whether pp is a left or right child of its parent. The function also declares two more pointers to RBTNodes gp and d. gp points to the parent of pp and d points to either the left or right child of gp, depending on the value of X.
         RBTNode *gp = pp -> parent, *d = (X == L) ? 
             gp -> rightChild : gp -> leftChild;
 
         d -> color = BLACK;
-        pp -> color = BLACK;
+        pp -> color = BLACK;    //The function then sets the colors of d, pp , and gp to BLACK, BLACK, and RED, respectively.
         gp -> color = RED;
 
         if(gp == root) gp -> color = BLACK;
