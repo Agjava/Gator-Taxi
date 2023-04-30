@@ -85,14 +85,14 @@ public:
         return node -> rideNumber == 0 && node -> tripDuration == 0 && node -> rideCost == 0;
     }
 
-    RBTNode* Nodefind(int key, RBTNode* node) {           //defines the function Nodefind that takes an integer key and a pointer to an RBTNode object node as arguments and returns a pointer to an RBTNode object.
+    RBTNode* findNode(int key, RBTNode* node) {           //defines the function findNode that takes an integer key and a pointer to an RBTNode object node as arguments and returns a pointer to an RBTNode object.
         if(!node || isExternalNode(node)) return nullptr;   // checks if the given node is null or an external node. If either condition is true, the function returns null immediately.
 
         int RideNumbercurrent = node -> rideNumber;
         if(key == RideNumbercurrent) return node;      //checks if the given key is equal to the ride number of the current node. If so, it returns the current node.
 
-        if(key > RideNumbercurrent) return Nodefind(key, node -> rightChild);      // checks if the given key is greater than the ride number of the current node. If so, it recursively calls itself with the right child of the current node as the new root of the subtree to search in.
-        return Nodefind(key, node -> leftChild);
+        if(key > RideNumbercurrent) return findNode(key, node -> rightChild);      // checks if the given key is greater than the ride number of the current node. If so, it recursively calls itself with the right child of the current node as the new root of the subtree to search in.
+        return findNode(key, node -> leftChild);
     }
 
     RBTNode* findParent(int key, RBTNode* node) {  //This  defines a recursive function findParent that takes in an integer key and a pointer to an RBTNode node as arguments. The function returns a pointer to an RBTNode.
@@ -166,7 +166,7 @@ public:
     }
 
     RBTNode* deleteNode(int rideNumber) {       // defines a function deleteNode that takes in an integer rideNumber as an argument and returns a pointer to an RBTNode. The function  delete a node with the specified rideNumber from a Red-Black Tree (RBT) data structure.
-        RBTNode *p = Nodefind(rideNumber, root);
+        RBTNode *p = findNode(rideNumber, root);
         if(!p) return p;
 //If the p pointer is not null, this means that a node with the specified rideNumber was found in the tree. The function then declares several pointers to RBTNodes: pp, which points to the parent of p; lc, which points to the left child of p; and rc, which points to the right child of p. It also declares a pointer to an RBTNode y, but its value is not initialized at this point.
         RBTNode *pp = p -> parent, *lc = p -> leftChild, *rc = p -> rightChild, *y;
