@@ -37,7 +37,7 @@ Heap() {          // it has a default constructor that initializes the "back" da
 back = 0;
 }
     
-int size() {              //back returns the size
+int getSize() {              //back returns the size
 return back;
 }
     
