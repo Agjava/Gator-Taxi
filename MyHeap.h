@@ -49,7 +49,7 @@ back = back + 1;
 }
 
 void TopNodeget () {                  // to the top most element in node
-heap[0] -> HeapNodeprint();
+heap[0] -> printHeapNode();
 }
     
 HeapNode* top () {              // this function returns top value in node
