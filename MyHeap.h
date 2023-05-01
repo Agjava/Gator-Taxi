@@ -132,7 +132,7 @@ heapifyDown(index);
 void printheap() {            //defines a function named print that takes no arguments and returns nothing (void).
 int level = 0, limit = 0;
 for(int i = 0; i < back; i++) {
-heap[i] -> HeapNodeprint();
+heap[i] -> printHeapNode();
 cout << ", ";
 if(i == limit) {     //checks if i is equal to limit which represents end of current level in binary tree representation of binary heap data structure. 
 limit = limit + pow(2, ++level);      //this line increments level by 1 and assigns value of limit plus power of 2 raised to level+1 to limit which represents end of next level in binary tree representation of binary heap data structure.
