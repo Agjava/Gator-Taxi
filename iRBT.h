@@ -1,4 +1,4 @@
-#include "MyHeap.h"    // including the file MyHeap.h that is included in this file
+#include "iHeap.h"    // including the file MyHeap.h that is included in this file
 #include <queue>       // initializing queue header
 #define RED 0         // Initalizing red black tree variables and giving them initial values
 #define BLACK 1
