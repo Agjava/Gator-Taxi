@@ -129,7 +129,7 @@ heap[index] = heap[back];
 heap[index] -> index = index;
 heapifyDown(index);
 }
-void printheap() {            //defines a function named print that takes no arguments and returns nothing (void).
+void printHeap() {            //defines a function named print that takes no arguments and returns nothing (void).
 int level = 0, limit = 0;
 for(int i = 0; i < back; i++) {
 heap[i] -> printHeapNode();
