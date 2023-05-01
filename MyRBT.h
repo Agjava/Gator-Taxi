@@ -134,7 +134,7 @@ public:
     }
 
     string range(int r1, int r2) {     // defines a function range that takes in two integers r1 and r2 as arguments and returns a string. 
-        RBTNode *n1 = Nodefind(r1, root), *n2 = Nodefind(r2, root);
+        RBTNode *n1 = findNode(r1, root), *n2 = findNode(r2, root);
         RBTNode *ancestor = findCommonAncestor(r1, r2, root);   // calls the findCommonAncestor function with arguments r1, r2, and root. The result of this call is stored in a pointer to an RBTNode ancestor
 
         string output;
