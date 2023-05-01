@@ -1,6 +1,6 @@
 #include <fstream>        //initializing filestream and vector 
 #include<vector>
-#include "MyRBT.h"        //including files MyRBT.h and stringUtils.h 
+#include "iRBT.h"        //including files MyRBT.h and stringUtils.h 
 #include "stringUtils.h"
 
 void print(RBT *rbt, Heap *heap, int *args, string &output) {       //function to print output 
