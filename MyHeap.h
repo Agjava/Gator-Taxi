@@ -21,10 +21,10 @@ this -> rideCost = rideCost;
 this -> tripDuration = tripDuration;
     }
     
-void HeapNodeprint() {                            // printing output of index , rideNumber
+void printHeapNode() {                            // printing output of index , rideNumber
 cout << "(" << this -> index << ", " << this -> rideNumber << ", " << this -> rideCost << ", " << this -> tripDuration << ")";
 }
-void HeapNodeprint(string &output) {                           // for printing output in of rideNumber , rideCost , tripDuration           
+void printHeapNode(string &output) {                           // for printing output in of rideNumber , rideCost , tripDuration           
 output += "(" + to_string(this -> rideNumber) + "," + to_string(this -> rideCost) + "," +  to_string(this -> tripDuration) + ")\n";
 }
 };
