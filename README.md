@@ -10,3 +10,5 @@ Min-Heap: Stores ride information ordered by estimated cost and trip duration, w
 
 The system maintains synchronized pointers between corresponding nodes in both data structures to ensure consistency across operations.
 
+# Code Report 
+<img width="679" height="802" alt="Screenshot 2025-07-10 at 3 03 02 PM" src="https://github.com/user-attachments/assets/9d83c72d-2d38-49c4-93c8-9ad7adeffb86" />
