@@ -1,5 +1,3 @@
-# GatorTaxi
-
 # Code Report 
 
 <div align="center">
